@@ -22,11 +22,11 @@ data "aws_availability_zones" "available" {
 }
 
 locals {
-  name = "boldlink-test-efs-${uuid()}"
+  name = "boldlink-test-efs"
 }
 
 module "boldlink_test_efs" {
-  source                     = "./.."
+  source                     = "boldlink/efs/aws"
   creation_token             = local.name
   availability_zone_name     = data.aws_availability_zones.available.names[0]
   performance_mode           = "generalPurpose"
