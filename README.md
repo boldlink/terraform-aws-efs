@@ -1,3 +1,6 @@
+
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+
 # AWS EFS Terraform module
 
 ## Description
