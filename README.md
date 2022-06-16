@@ -14,11 +14,13 @@ Examples available [`here`](github.com/boldlink/terraform-aws-efs/tree/main/exam
 *NOTE*: These examples use the latest version of this module
 
 ```console
-module "miniumum" {
-  source  = "boldlink/<module_name>/<provider>"
-  version = "x.x.x"
-  <insert the minimum required variables here if any are required>
-  ...
+module "complete_efs" {
+  source         = "./../../"
+  creation_token = "example-minimum-efs"
+  tags = {
+    environment        = "examples"
+    "user::CostCenter" = "terraform-registry"
+  }
 }
 ```
 ## Documentation
