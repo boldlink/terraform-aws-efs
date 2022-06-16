@@ -1,3 +1,4 @@
+# efs file system
 variable "availability_zone_name" {
   type        = string
   description = "(Optional) the AWS Availability Zone in which to create the file system. Used to create a file system that uses One Zone storage classes. See user guide for more information."
@@ -13,7 +14,7 @@ variable "creation_token" {
 variable "encrypted" {
   type        = bool
   description = "(Optional) If true, the disk will be encrypted."
-  default     = false
+  default     = true
 }
 
 variable "kms_key_id" {
@@ -52,21 +53,16 @@ variable "throughput_mode" {
   default     = "bursting"
 }
 
-variable "efs_mount_target_subnet_id" {
-  type        = string
-  description = "(Required) The ID of the subnet to add the mount target in."
+variable "efs_mount_target_subnet_ids" {
+  type        = list(string)
+  description = "(Required) The IDs of subnets to add the mount target in."
+  default     = []
 }
 
 variable "efs_mount_target_ip_address" {
   type        = string
   description = "(Optional) The address (within the address range of the specified subnet) at which the file system may be mounted via the mount target."
   default     = null
-}
-
-variable "security_groups" {
-  type        = list(string)
-  description = "(Optional) A list of up to 5 VPC security group IDs (that must be for the same VPC as subnet specified) in effect for the mount target."
-  default     = []
 }
 
 variable "bypass_policy_lockout_safety_check" {
@@ -84,15 +80,61 @@ variable "efs_file_system_policy" {
 variable "efs_backup_policy_status" {
   type        = string
   description = "(Required) A status of the backup policy. Valid values: `ENABLED`, `DISABLED`."
-  default     = "DISABLED"
+  default     = "ENABLED"
 }
 
-/*
-tags
-*/
+variable "tags" {
+  type        = map(string)
+  description = " (Optional) A map of tags to assign to the file system. If configured with a provider default_tags configuration block present, tags with matching keys will overwrite those defined at the provider-level."
+  default     = {}
+}
 
-variable "name" {
+# Security Group
+variable "vpc_id" {
+  description = "(Optional, Forces new resource) VPC ID."
   type        = string
-  description = "The name to tag this resource."
   default     = null
+}
+
+variable "ingress_rules" {
+  description = "(Optional) Ingress rules to add to the security group"
+  type = map(object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    self        = bool
+    cidr_blocks = list(string)
+  }))
+  default = {
+    default = {
+      cidr_blocks = null
+      description = "Default efs ingress rule "
+      from_port   = 2049
+      to_port     = 2049
+      protocol    = "tcp"
+      self        = true
+    }
+  }
+}
+
+variable "egress_rules" {
+  description = "(Optional) egress rules to add to the security group"
+  type = map(object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = {
+    default = {
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "Allow all egress traffic"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      self        = false
+    }
+  }
 }
