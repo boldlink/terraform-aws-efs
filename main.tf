@@ -12,7 +12,12 @@ resource "aws_efs_file_system" "main" {
   provisioned_throughput_in_mibps = var.provisioned_throughput_in_mibps
   throughput_mode                 = var.throughput_mode
 
-  tags = var.tags
+  tags = merge(
+    {
+      "Name" = var.creation_token
+    },
+    var.tags,
+  )
 }
 
 resource "aws_efs_mount_target" "main" {
@@ -20,7 +25,7 @@ resource "aws_efs_mount_target" "main" {
   file_system_id  = aws_efs_file_system.main.id
   subnet_id       = var.efs_mount_target_subnet_ids[count.index]
   ip_address      = var.efs_mount_target_ip_address
-  security_groups = [aws_security_group.main.id]
+  security_groups = [aws_security_group.main[0].id]
 }
 
 resource "aws_efs_file_system_policy" "main" {
@@ -40,32 +45,36 @@ resource "aws_efs_backup_policy" "main" {
 
 # Efs Security Group
 resource "aws_security_group" "main" {
+  count       = length(var.efs_mount_target_subnet_ids) > 0 ? 1 : 0
   name        = "${var.creation_token}-security-group"
   description = "Efs security Group for ${var.creation_token}"
   vpc_id      = var.vpc_id
-  tags        = var.tags
+  tags = merge(
+    {
+      "Name" = var.creation_token
+    },
+    var.tags,
+  )
 }
 
 resource "aws_security_group_rule" "ingress" {
   for_each          = var.ingress_rules
-  security_group_id = aws_security_group.main.id
+  security_group_id = aws_security_group.main[0].id
   type              = "ingress"
   description       = lookup(each.value, "description", null)
   from_port         = lookup(each.value, "from_port", null)
   to_port           = lookup(each.value, "to_port", null)
   protocol          = lookup(each.value, "protocol", null)
-  self              = lookup(each.value, "self", null)
   cidr_blocks       = lookup(each.value, "cidr_blocks", [])
 }
 
 resource "aws_security_group_rule" "egress" {
   for_each          = var.egress_rules
-  security_group_id = aws_security_group.main.id
+  security_group_id = aws_security_group.main[0].id
   type              = "ingress"
   description       = lookup(each.value, "description", null)
   from_port         = lookup(each.value, "from_port", null)
   to_port           = lookup(each.value, "to_port", null)
   protocol          = lookup(each.value, "protocol", null)
-  self              = lookup(each.value, "self", null)
   cidr_blocks       = lookup(each.value, "cidr_blocks", [])
 }

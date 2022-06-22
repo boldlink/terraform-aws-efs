@@ -41,7 +41,7 @@ module "complete_efs" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.18.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.19.0 |
 
 ## Modules
 
@@ -70,9 +70,9 @@ No modules.
 | <a name="input_efs_file_system_policy"></a> [efs\_file\_system\_policy](#input\_efs\_file\_system\_policy) | (Required) The JSON formatted file system policy for the EFS file system. | `string` | `""` | no |
 | <a name="input_efs_mount_target_ip_address"></a> [efs\_mount\_target\_ip\_address](#input\_efs\_mount\_target\_ip\_address) | (Optional) The address (within the address range of the specified subnet) at which the file system may be mounted via the mount target. | `string` | `null` | no |
 | <a name="input_efs_mount_target_subnet_ids"></a> [efs\_mount\_target\_subnet\_ids](#input\_efs\_mount\_target\_subnet\_ids) | (Required) The IDs of subnets to add the mount target in. | `list(string)` | `[]` | no |
-| <a name="input_egress_rules"></a> [egress\_rules](#input\_egress\_rules) | (Optional) egress rules to add to the security group | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "description": "Allow all egress traffic",<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "self": false,<br>    "to_port": 0<br>  }<br>}</pre> | no |
+| <a name="input_egress_rules"></a> [egress\_rules](#input\_egress\_rules) | (Optional) egress rules to add to the security group | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>    cidr_blocks = list(string)<br>  }))</pre> | `{}` | no |
 | <a name="input_encrypted"></a> [encrypted](#input\_encrypted) | (Optional) If true, the disk will be encrypted. | `bool` | `true` | no |
-| <a name="input_ingress_rules"></a> [ingress\_rules](#input\_ingress\_rules) | (Optional) Ingress rules to add to the security group | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": null,<br>    "description": "Default efs ingress rule ",<br>    "from_port": 2049,<br>    "protocol": "tcp",<br>    "self": true,<br>    "to_port": 2049<br>  }<br>}</pre> | no |
+| <a name="input_ingress_rules"></a> [ingress\_rules](#input\_ingress\_rules) | (Optional) Ingress rules to add to the security group | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    to_port     = number<br>    protocol    = string<br>    cidr_blocks = list(string)<br>  }))</pre> | `{}` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | (Optional) The ARN for the KMS encryption key. When specifying kms\_key\_id, encrypted needs to be set to `true`. | `string` | `null` | no |
 | <a name="input_performance_mode"></a> [performance\_mode](#input\_performance\_mode) | (Optional) The file system performance mode. Can be either `generalPurpose` or `maxIO` (Default: `generalPurpose`) | `string` | `"generalPurpose"` | no |
 | <a name="input_provisioned_throughput_in_mibps"></a> [provisioned\_throughput\_in\_mibps](#input\_provisioned\_throughput\_in\_mibps) | (Optional) The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with throughput\_mode set to `provisioned`. | `string` | `null` | no |

@@ -9,13 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Feature: efs access point
 - Fix: multiple security groups for mount target
 
-## [1.1.0] - 2022-06-16
+## [1.1.0] - 2022-06-22
 ### Description
 - Feature: Efs security group and rules
 - Feature: multiple mount points
 - Refactored Examples (complete and minimum)
 - Added Standard template files
 - fix: checkov failed scans
+- Added: VPC creation to example
 
 ## [1.0.1] - 2022-04-28
 ### Description

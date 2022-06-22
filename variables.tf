@@ -103,19 +103,9 @@ variable "ingress_rules" {
     from_port   = number
     to_port     = number
     protocol    = string
-    self        = bool
     cidr_blocks = list(string)
   }))
-  default = {
-    default = {
-      cidr_blocks = null
-      description = "Default efs ingress rule "
-      from_port   = 2049
-      to_port     = 2049
-      protocol    = "tcp"
-      self        = true
-    }
-  }
+  default = {}
 }
 
 variable "egress_rules" {
@@ -127,14 +117,5 @@ variable "egress_rules" {
     protocol    = string
     cidr_blocks = list(string)
   }))
-  default = {
-    default = {
-      cidr_blocks = ["0.0.0.0/0"]
-      description = "Allow all egress traffic"
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      self        = false
-    }
-  }
+  default = {}
 }
