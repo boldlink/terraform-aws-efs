@@ -6,8 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 - Fix: lifecycle policy to dynamic
-- Feature: efs access point
+- Feat: efs access point
 - Fix: multiple security groups for mount target
+- feat: Add access point support
+- feat: Add replication support
+- feat: Add backup policy support
 
 ## [1.1.0] - 2022-06-22
 ### Description
