@@ -3,10 +3,20 @@ resource "aws_efs_file_system" "main" {
   availability_zone_name = var.availability_zone_name
   encrypted              = var.encrypted
   kms_key_id             = var.kms_key_id
-  lifecycle_policy {
-    transition_to_ia                    = var.transition_to_ia
-    transition_to_primary_storage_class = var.transition_to_primary_storage_class
+
+  dynamic "lifecycle_policy" {
+    for_each = length(var.transition_to_ia) > 0 ? [1] : []
+    content {
+      transition_to_ia = try(var.transition_to_ia[0], null)
+    }
   }
+  dynamic "lifecycle_policy" {
+    for_each = length(var.transition_to_primary_storage_class) > 0 ? [1] : []
+    content {
+      transition_to_primary_storage_class = try(var.transition_to_primary_storage_class[0], null)
+    }
+  }
+
   performance_mode                = var.performance_mode
   provisioned_throughput_in_mibps = var.provisioned_throughput_in_mibps
   throughput_mode                 = var.throughput_mode

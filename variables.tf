@@ -24,15 +24,16 @@ variable "kms_key_id" {
 }
 
 variable "transition_to_ia" {
-  type        = string
+  type        = list(string)
   description = "(Optional) Indicates how long it takes to transition files to the IA storage class. Valid values: `AFTER_7_DAYS`, `AFTER_14_DAYS`, `AFTER_30_DAYS`, `AFTER_60_DAYS`, or `AFTER_90_DAYS`."
-  default     = null
+  default     = []
 }
 
 variable "transition_to_primary_storage_class" {
-  type        = string
+  type        = list(string)
   description = "(Optional) Describes the policy used to transition a file from infequent access storage to primary storage. Valid values: `AFTER_1_ACCESS`."
-  default     = "AFTER_1_ACCESS"
+  default     = []
+  #default     = "AFTER_1_ACCESS"
 }
 
 variable "performance_mode" {

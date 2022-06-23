@@ -21,7 +21,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_complete_efs"></a> [complete\_efs](#module\_complete\_efs) | ./../../ | n/a |
+| <a name="module_minimum_efs"></a> [minimum\_efs](#module\_minimum\_efs) | ./../../ | n/a |
 
 ## Resources
 

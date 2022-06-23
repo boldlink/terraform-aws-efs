@@ -1,4 +1,4 @@
-module "complete_efs" {
+module "minimum_efs" {
   source         = "./../../"
   creation_token = "example-minimum-efs"
   tags = {

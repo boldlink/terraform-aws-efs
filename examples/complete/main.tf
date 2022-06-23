@@ -18,10 +18,11 @@ module "complete_efs" {
   efs_mount_target_subnet_ids = flatten(module.efs_vpc.private_subnet_id)
   efs_file_system_policy      = local.efs_file_system_policy
   vpc_id                      = module.efs_vpc.id
+  transition_to_ia            = ["AFTER_90_DAYS"]
   ingress_rules = {
     efs_ingress = {
       cidr_blocks = [local.cidr_block]
-      description = "efs ingress rule "
+      description = "efs ingress rule"
       from_port   = 2049
       to_port     = 2049
       protocol    = "tcp"
