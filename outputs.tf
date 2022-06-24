@@ -23,11 +23,6 @@ output "file_system_owner_id" {
   description = "The AWS account that created the file system. If the file system was createdby an IAM user, the parent account to which the user belongs is the owner."
 }
 
-output "number_of_mount_targets" {
-  value       = aws_efs_file_system.main.number_of_mount_targets
-  description = "The current number of mount targets that the file system has."
-}
-
 output "file_system_size_in_bytes" {
   value       = aws_efs_file_system.main.size_in_bytes
   description = "The latest known metered size (in bytes) of data stored in the file system, the value is not the exact size that the file system was at any point in time."

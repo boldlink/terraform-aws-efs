@@ -13,12 +13,13 @@ module "efs_vpc" {
 
 
 module "complete_efs" {
-  source                      = "./../../"
-  creation_token              = local.name
-  efs_mount_target_subnet_ids = flatten(module.efs_vpc.private_subnet_id)
-  efs_file_system_policy      = local.efs_file_system_policy
-  vpc_id                      = module.efs_vpc.id
-  transition_to_ia            = ["AFTER_90_DAYS"]
+  source                              = "./../../"
+  creation_token                      = local.name
+  efs_mount_target_subnet_ids         = flatten(module.efs_vpc.private_subnet_id)
+  efs_file_system_policy              = local.efs_file_system_policy
+  vpc_id                              = module.efs_vpc.id
+  transition_to_ia                    = ["AFTER_90_DAYS"]
+  transition_to_primary_storage_class = ["AFTER_1_ACCESS"]
   ingress_rules = {
     efs_ingress = {
       cidr_blocks = [local.cidr_block]
