@@ -10,8 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Add access point support
 - feat: Add replication support
 - feat: Add backup policy support
+- fix: VPC used in example
 
-## [1.1.0] - 2022-06-22
+## [1.1.0] - 2022-06-24
 ### Description
 - Feature: Efs security group and rules
 - Feature: multiple mount points
