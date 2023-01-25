@@ -10,7 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Add access point support
 - feat: Add replication support
 - feat: Add backup policy support
-- fix: VPC used in example
+
+## [1.1.1] - 2023-01-25
+### Description
+- fix: Avoid creating multiple vpcs by adding supporting resources
+- feat: Add updated repository and workflow files
 
 ## [1.1.0] - 2022-06-24
 ### Description
@@ -31,10 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: Version lock
 - Added: Efs module example
 
-[Unreleased]: https://github.com/boldlink/terraform-aws-efs/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/boldlink/terraform-aws-efs/compare/1.1.1...HEAD
 
+[1.1.1]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.1
 [1.1.0]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.0
-
 [1.0.1]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.0.1
-
 [1.0.0]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.0.0

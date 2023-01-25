@@ -1,6 +1,6 @@
 output "outputs" {
   description = "Example output for complete efs"
   value = [
-    module.complete_efs,
+    module.complete_efs_example,
   ]
 }

@@ -1,8 +1,5 @@
 module "minimum_efs" {
-  source         = "./../../"
-  creation_token = "example-minimum-efs"
-  tags = {
-    environment        = "examples"
-    "user::CostCenter" = "terraform-registry"
-  }
+  source         = "boldlink/efs/aws"
+  creation_token = local.name
+  tags           = local.tags
 }

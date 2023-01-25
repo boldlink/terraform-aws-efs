@@ -11,7 +11,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.15.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.45.0 |
 
 ## Providers
 
@@ -21,7 +21,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_minimum_efs"></a> [minimum\_efs](#module\_minimum\_efs) | ./../../ | n/a |
+| <a name="module_minimum_efs"></a> [minimum\_efs](#module\_minimum\_efs) | boldlink/efs/aws | n/a |
 
 ## Resources
 
@@ -49,4 +49,4 @@ This repository uses third party software:
   * Install with `brew install tflint`
   * Manually use via pre-commit
 
-#### BOLDLink-SIG 2022
+#### BOLDLink-SIG 2023
