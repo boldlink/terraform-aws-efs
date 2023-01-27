@@ -1,4 +1,11 @@
-[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://github.com/boldlink/terraform-aws-efs/blob/main/LICENSE)
+[![Latest Release](https://img.shields.io/github/release/boldlink/terraform-aws-efs.svg)](https://github.com/boldlink/terraform-aws-efs/releases/latest)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/update.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/release.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pr-labeler.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/checkov.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/auto-badge.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
 
 [<img src="https://avatars.githubusercontent.com/u/25388280?s=200&v=4" width="96"/>](https://boldlink.io)
 
@@ -11,28 +18,27 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.15.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.45.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.20.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.51.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_complete_efs"></a> [complete\_efs](#module\_complete\_efs) | ./../../ | n/a |
-| <a name="module_efs_vpc"></a> [efs\_vpc](#module\_efs\_vpc) | git::https://github.com/boldlink/terraform-aws-vpc.git | 2.0.3 |
+| <a name="module_complete_efs_example"></a> [complete\_efs\_example](#module\_complete\_efs\_example) | boldlink/efs/aws | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+| [aws_subnet.public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
+| [aws_subnets.public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
+| [aws_vpc.supporting](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
 
 ## Inputs
 
@@ -58,4 +64,4 @@ This repository uses third party software:
   * Install with `brew install tflint`
   * Manually use via pre-commit
 
-#### BOLDLink-SIG 2022
+#### BOLDLink-SIG 2023

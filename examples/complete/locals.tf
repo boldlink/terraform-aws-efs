@@ -1,16 +1,26 @@
 locals {
-  name        = "example-complete-efs"
-  cidr_block  = "192.168.0.0/16"
-  tag_env     = "dev"
-  efs_subnet1 = cidrsubnet(local.cidr_block, 7, 50)
-  efs_subnet2 = cidrsubnet(local.cidr_block, 7, 60)
-  efs_subnet3 = cidrsubnet(local.cidr_block, 7, 70)
-  efs_subnets = [local.efs_subnet1, local.efs_subnet2, local.efs_subnet3]
+  name = "complete-efs-example"
 
-  az1 = data.aws_availability_zones.available.names[0]
-  az2 = data.aws_availability_zones.available.names[1]
-  az3 = data.aws_availability_zones.available.names[2]
-  azs = [local.az1, local.az2, local.az3]
+  subnet_id = [
+    for i in data.aws_subnet.public : i.id
+  ]
+
+  public_subnets            = local.subnet_id
+  supporting_resources_name = "terraform-aws-secretsmanager"
+  vpc_id                    = data.aws_vpc.supporting.id
+  vpc_cidr                  = data.aws_vpc.supporting.cidr_block
+
+  tags = {
+    Environment        = "examples"
+    Name               = local.name
+    "user::CostCenter" = "terraform-registry"
+    department         = "operations"
+    Project            = "Examples"
+    Owner              = "Boldlink"
+    LayerName          = "cExamples"
+    LayerId            = "cExamples"
+  }
+
   efs_file_system_policy = jsonencode(
     {
       "Version" : "2012-10-17",

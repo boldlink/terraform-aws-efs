@@ -9,8 +9,13 @@
 
 [<img src="https://avatars.githubusercontent.com/u/25388280?s=200&v=4" width="96"/>](https://boldlink.io)
 
-# Terraform module example of minimum configuration
+# terraform-aws-ec2 supporting resources
 
+These stacks are to be used on the examples testing and were setup to minimum dependencies,
+they are not in any way the recommended setup for a production grade implementation.
+
+This stack builds:
+* VPC with public and Private subnets
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -18,21 +23,27 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.45.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=4.45.0 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.51.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_minimum_efs"></a> [minimum\_efs](#module\_minimum\_efs) | boldlink/efs/aws | n/a |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | boldlink/vpc/aws | 2.0.3 |
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
 
@@ -55,5 +66,29 @@ This repository uses third party software:
 * [tflint](https://github.com/terraform-linters/tflint) - Used to lint the Terraform code
   * Install with `brew install tflint`
   * Manually use via pre-commit
+
+### Supporting resources:
+
+The example stacks are used by BOLDLink developers to validate the modules by building an actual stack on AWS.
+
+Some of the modules have dependencies on other modules (ex. Ec2 instance depends on the VPC) so we create them
+first and use data sources on the examples to use the stacks.
+
+Any supporting resources will be available on the `tests/supportingResources` and the lifecycle is managed by the `Makefile` targets.
+
+### Makefile
+The makefile contained in this repo is optimized for linux paths and the main purpose is to execute testing for now.
+* Create all tests stacks including any supporting resources:
+```console
+make tests
+```
+* Clean all tests *except* existing supporting resources:
+```console
+make clean
+```
+* Clean supporting resources - this is done seperately so you can test your module build/modify/destroy independently.
+```console
+make cleansupporting
+```
 
 #### BOLDLink-SIG 2023

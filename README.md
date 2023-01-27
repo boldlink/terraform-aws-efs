@@ -1,4 +1,11 @@
-[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://github.com/boldlink/terraform-aws-efs/blob/main/LICENSE)
+[![Latest Release](https://img.shields.io/github/release/boldlink/terraform-aws-efs.svg)](https://github.com/boldlink/terraform-aws-efs/releases/latest)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/update.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/release.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pr-labeler.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/checkov.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/auto-badge.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
 
 [<img src="https://avatars.githubusercontent.com/u/25388280?s=200&v=4" width="96"/>](https://boldlink.io)
 
@@ -6,19 +13,28 @@
 
 ## Description
 
-This terraform module creates AWS Elastic File System with the option of adding more configurations.
+This Terraform module facilitates the creation of an AWS Elastic File System, complete with the capability to incorporate additional configurations.
 
-Examples available [`here`](github.com/boldlink/terraform-aws-efs/tree/main/examples)
+## Why choose this module
+- Ensures adherence to AWS security standards through the integration of checkov for code compliance scanning.
+- The following features are included in the module:
+  - Module based security group with dynamic rule configuration capabilities
+  - EFS file system policy feature which can be customized further depending on the required permissions
+  - EFS backup policy
+  - Encryption
+- Provides ease of setup and utilization through clear instructions and examples.
+
+Examples available [`here`](./examples)
 
 ## Usage
-*NOTE*: These examples use the latest version of this module
+**NOTE**: These examples use the latest version of this module
 
-```console
+```hcl
 module "complete_efs" {
-  source         = "./../../"
-  creation_token = "example-minimum-efs"
+  source         = "boldlink/efs/aws"
+  creation_token = "minimum-efs-example"
   tags = {
-    environment        = "examples"
+    Environment        = "examples"
     "user::CostCenter" = "terraform-registry"
   }
 }
@@ -35,13 +51,13 @@ module "complete_efs" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.15.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.45.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.19.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.51.0 |
 
 ## Modules
 
@@ -116,11 +132,35 @@ This repository uses third party software:
   * Install with `brew install tflint`
   * Manually use via pre-commit
 
-### Makefile
-The makefile contain in this repo is optimized for linux paths and the main purpose is to execute testing for now.
-* Create all tests:
-`$ make tests`
-* Clean all tests:
-`$ make clean`
+### Supporting resources:
 
-#### BOLDLink-SIG 2022
+The example stacks are used by BOLDLink developers to validate the modules by building an actual stack on AWS.
+
+Some of the modules have dependencies on other modules (ex. Ec2 instance depends on the VPC module) so we create them
+first and use data sources on the examples to use the stacks.
+
+Any supporting resources will be available on the `tests/supportingResources` and the lifecycle is managed by the `Makefile` targets.
+
+Resources on the `tests/supportingResources` folder are not intended for demo or actual implementation purposes, and can be used for reference.
+
+### Makefile
+The makefile contained in this repo is optimized for linux paths and the main purpose is to execute testing for now.
+* Create all tests stacks including any supporting resources:
+```console
+make tests
+```
+* Clean all tests *except* existing supporting resources:
+```console
+make clean
+```
+* Clean supporting resources - this is done separately so you can test your module build/modify/destroy independently.
+```console
+make cleansupporting
+```
+* !!!DANGER!!! Clean the state files from examples and test/supportingResources - use with CAUTION!!!
+```console
+make cleanstatefiles
+```
+
+
+#### BOLDLink-SIG 2023
