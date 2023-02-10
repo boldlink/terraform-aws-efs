@@ -57,7 +57,7 @@ module "complete_efs" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.51.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.54.0 |
 
 ## Modules
 
