@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.2] - 2023-03-02
 ### Description
-- fix: allow multiple security groups for mount target. This include one security group created by module and other external security groups
+- fix: limitation of only providing/specifying a single security group. Prior to this fix, the module could only supply one security group. With this improvement, external security groups may be utilized without reliance on the module's internal security group. Furthermore, this new functionality also allows for the usage of both internal and external security groups simultaneously.
 
 ## [1.1.1] - 2023-01-25
 ### Description
