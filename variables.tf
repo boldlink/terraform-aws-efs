@@ -97,16 +97,16 @@ variable "vpc_id" {
   default     = null
 }
 
-variable "ingress_rules" {
-  description = "(Optional) Ingress rules to add to the security group"
-  type = map(object({
-    description = string
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = list(string)
-  }))
-  default = {}
+variable "create_security_group" {
+  type        = bool
+  description = "whether to create security group using module"
+  default     = true
+}
+
+variable "security_group_ingress" {
+  description = "Specify the ingress rule for the security group"
+  type        = any
+  default     = {}
 }
 
 variable "egress_rules" {
@@ -119,4 +119,11 @@ variable "egress_rules" {
     cidr_blocks = list(string)
   }))
   default = {}
+}
+
+## Other external security groups
+variable "external_security_groups" {
+  type        = list(string)
+  description = "IDs of other security groups. NOTE: All these security groups must be in the same vpc as the subnets where the efs is mounted. A maximum of 5 Security Group IDs is allowed."
+  default     = []
 }
