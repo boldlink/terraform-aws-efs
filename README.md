@@ -26,6 +26,12 @@ This Terraform module facilitates the creation of an AWS Elastic File System, co
 
 Examples available [`here`](./examples)
 
+**Note on Seurity Group Usage**
+- To create a security group for efs using this module set the `create_security_group` argument to `true`
+- To provide custom security group rules for the security group created by the module use the `security_group_ingress` block (see complete example).
+- To provide external security group that is already configured for efs use the `external_security_groups` block and provide the security group IDs.
+- This allows you to use one security group or both
+
 ## Usage
 **NOTE**: These examples use the latest version of this module
 
@@ -162,6 +168,5 @@ make cleansupporting
 ```console
 make cleanstatefiles
 ```
-
 
 #### BOLDLink-SIG 2023

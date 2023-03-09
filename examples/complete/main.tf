@@ -8,7 +8,7 @@ module "complete_efs_example" {
   transition_to_primary_storage_class = ["AFTER_1_ACCESS"]
   tags                                = var.tags
   external_security_groups            = [data.aws_security_group.default.id]
-  create_security_group               = false
+  create_security_group               = true
 
   security_group_ingress = [
     {
