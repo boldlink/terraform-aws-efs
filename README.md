@@ -30,7 +30,7 @@ Examples available [`here`](./examples)
 - To create a security group for efs using this module set the `create_security_group` argument to `true`
 - To provide custom security group rules for the security group created by the module use the `security_group_ingress` block (see complete example).
 - To provide external security group that is already configured for efs use the `external_security_groups` block and provide the security group IDs.
-- This allows you to use one security group or both
+- This allows you to use one or more security groups
 
 ## Usage
 **NOTE**: These examples use the latest version of this module
