@@ -1,5 +1,5 @@
 module "minimum_efs" {
-  source         = "boldlink/efs/aws"
-  creation_token = local.name
-  tags           = local.tags
+  source         = "../.."
+  creation_token = var.name
+  tags           = var.tags
 }
