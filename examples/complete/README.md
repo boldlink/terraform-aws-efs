@@ -4,6 +4,7 @@
 [![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/release.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
 [![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
 [![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/pr-labeler.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
+[![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/module-examples-tests.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
 [![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/checkov.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
 [![Build Status](https://github.com/boldlink/terraform-aws-efs/actions/workflows/auto-badge.yaml/badge.svg)](https://github.com/boldlink/terraform-aws-efs/actions)
 
@@ -24,7 +25,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.62.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.63.0 |
 
 ## Modules
 
