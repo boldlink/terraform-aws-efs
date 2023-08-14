@@ -1,18 +1,19 @@
 module "vpc" {
+  #checkov:skip=CKV_TF_1
   source                = "boldlink/vpc/aws"
-  version               = "3.0.2"
+  version               = "3.0.4"
   name                  = var.name
   cidr_block            = var.cidr_block
-  enable_dns_support    = true
-  enable_dns_hostnames  = true
-  enable_public_subnets = true
+  enable_dns_support    = var.enable_dns_support
+  enable_dns_hostnames  = var.enable_dns_hostnames
+  enable_public_subnets = var.enable_public_subnets
   tags                  = var.tags
 
   public_subnets = {
     public = {
       cidrs                   = local.public_subnets
-      map_public_ip_on_launch = true
-      nat                     = "single"
+      map_public_ip_on_launch = var.map_public_ip_on_launch
+      nat                     = var.nat
     }
   }
 }
