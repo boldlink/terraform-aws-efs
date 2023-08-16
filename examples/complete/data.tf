@@ -20,4 +20,5 @@ data "aws_subnet" "public" {
 
 data "aws_security_group" "default" {
   vpc_id = data.aws_vpc.supporting.id
+  name   = "default"
 }

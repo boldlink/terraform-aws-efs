@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Add access point support
 - feat: Add replication support
 - feat: Add backup policy support
+- fix: CKV_TF_1: "Ensure Terraform module sources use a commit hash"
+
+## [1.1.3] - 2023-08-14
+- fix: VPC version used in supporting resources. This is to fix pre-commit errors for deprecated outputs
 
 ## [1.1.2] - 2023-03-02
 ### Description
@@ -38,8 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: Version lock
 - Added: Efs module example
 
-[Unreleased]: https://github.com/boldlink/terraform-aws-efs/compare/1.1.2...HEAD
+[Unreleased]: https://github.com/boldlink/terraform-aws-efs/compare/1.1.3...HEAD
 
+[1.1.3]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.3
 [1.1.2]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.2
 [1.1.1]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.1
 [1.1.0]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.0
