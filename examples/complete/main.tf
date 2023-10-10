@@ -1,14 +1,19 @@
 module "complete_efs_example" {
   source                              = "../../"
   creation_token                      = var.name
-  efs_mount_target_subnet_ids         = local.public_subnets
-  efs_file_system_policy              = local.efs_file_system_policy
+  mount_target_subnet_ids             = local.public_subnets
+  file_system_policy                  = local.file_system_policy
   vpc_id                              = local.vpc_id
   transition_to_ia                    = ["AFTER_90_DAYS"]
   transition_to_primary_storage_class = ["AFTER_1_ACCESS"]
   tags                                = var.tags
   external_security_groups            = [data.aws_security_group.default.id]
   create_security_group               = true
+  performance_mode                    = "maxIO"
+  throughput_mode                     = "provisioned"
+  provisioned_throughput_in_mibps     = 300
+  mount_target_ip_addresses           = local.ip_addresses
+  backup_policy_status                = "DISABLED"
 
   security_group_ingress = [
     {

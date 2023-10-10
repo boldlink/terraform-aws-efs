@@ -30,31 +30,31 @@ resource "aws_efs_file_system" "main" {
 }
 
 resource "aws_efs_mount_target" "main" {
-  count           = length(var.efs_mount_target_subnet_ids) > 0 ? length(var.efs_mount_target_subnet_ids) : 0
+  count           = length(var.mount_target_subnet_ids) > 0 ? length(var.mount_target_subnet_ids) : 0
   file_system_id  = aws_efs_file_system.main.id
-  subnet_id       = var.efs_mount_target_subnet_ids[count.index]
-  ip_address      = var.efs_mount_target_ip_address
+  subnet_id       = var.mount_target_subnet_ids[count.index]
+  ip_address      = var.mount_target_ip_addresses[count.index]
   security_groups = concat(var.external_security_groups, aws_security_group.main.*.id)
 }
 
 resource "aws_efs_file_system_policy" "main" {
-  count                              = var.efs_file_system_policy != "" ? 1 : 0
+  count                              = var.file_system_policy != "" ? 1 : 0
   file_system_id                     = aws_efs_file_system.main.id
   bypass_policy_lockout_safety_check = var.bypass_policy_lockout_safety_check
-  policy                             = var.efs_file_system_policy
+  policy                             = var.file_system_policy
 }
 
 resource "aws_efs_backup_policy" "main" {
   file_system_id = aws_efs_file_system.main.id
 
   backup_policy {
-    status = var.efs_backup_policy_status
+    status = var.backup_policy_status
   }
 }
 
 # Efs Security Group
 resource "aws_security_group" "main" {
-  count       = length(var.efs_mount_target_subnet_ids) > 0 && var.create_security_group ? 1 : 0
+  count       = length(var.mount_target_subnet_ids) > 0 && var.create_security_group ? 1 : 0
   name        = "${var.creation_token}-security-group"
   description = "Efs security Group for ${var.creation_token}"
   vpc_id      = var.vpc_id
