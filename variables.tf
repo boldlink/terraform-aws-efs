@@ -111,14 +111,8 @@ variable "security_group_ingress" {
 
 variable "egress_rules" {
   description = "(Optional) egress rules to add to the security group"
-  type = map(object({
-    description = string
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = list(string)
-  }))
-  default = {}
+  type        = any
+  default     = {}
 }
 
 ## Other external security groups

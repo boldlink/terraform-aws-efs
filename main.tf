@@ -71,13 +71,16 @@ resource "aws_security_group" "main" {
     }
   }
 
-  egress {
-    description      = "Rule to allow all outbound traffic"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+  dynamic "egress" {
+    for_each = var.egress_rules
+    content {
+      description      = try(egress.value.description, 0)
+      from_port        = try(egress.value.from_port, 0)
+      to_port          = try(egress.value.to_port, 0)
+      protocol         = try(egress.value.protocol, "-1")
+      cidr_blocks      = try(egress.value.cidr_blocks, ["0.0.0.0/0"])
+      ipv6_cidr_blocks = try([egress.value.ipv6_cidr_blocks], ["::/0"])
+    }
   }
 
   tags = merge(
@@ -86,15 +89,4 @@ resource "aws_security_group" "main" {
     },
     var.tags,
   )
-}
-
-resource "aws_security_group_rule" "egress" {
-  for_each          = var.egress_rules
-  security_group_id = aws_security_group.main[0].id
-  type              = "ingress"
-  description       = lookup(each.value, "description", null)
-  from_port         = lookup(each.value, "from_port", null)
-  to_port           = lookup(each.value, "to_port", null)
-  protocol          = lookup(each.value, "protocol", null)
-  cidr_blocks       = lookup(each.value, "cidr_blocks", [])
 }
