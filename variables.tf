@@ -54,16 +54,16 @@ variable "throughput_mode" {
   default     = "bursting"
 }
 
-variable "efs_mount_target_subnet_ids" {
+variable "mount_target_subnet_ids" {
   type        = list(string)
   description = "(Required) The IDs of subnets to add the mount target in."
   default     = []
 }
 
-variable "efs_mount_target_ip_address" {
-  type        = string
-  description = "(Optional) The address (within the address range of the specified subnet) at which the file system may be mounted via the mount target."
-  default     = null
+variable "mount_target_ip_addresses" {
+  type        = list(string)
+  description = "The addresses (within the address range of the specified subnet) at which the file system may be mounted via the mount target."
+  default     = []
 }
 
 variable "bypass_policy_lockout_safety_check" {
@@ -72,13 +72,13 @@ variable "bypass_policy_lockout_safety_check" {
   default     = false
 }
 
-variable "efs_file_system_policy" {
+variable "file_system_policy" {
   type        = string
   description = "(Required) The JSON formatted file system policy for the EFS file system."
   default     = ""
 }
 
-variable "efs_backup_policy_status" {
+variable "backup_policy_status" {
   type        = string
   description = "(Required) A status of the backup policy. Valid values: `ENABLED`, `DISABLED`."
   default     = "ENABLED"
@@ -111,14 +111,8 @@ variable "security_group_ingress" {
 
 variable "egress_rules" {
   description = "(Optional) egress rules to add to the security group"
-  type = map(object({
-    description = string
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = list(string)
-  }))
-  default = {}
+  type        = any
+  default     = {}
 }
 
 ## Other external security groups
