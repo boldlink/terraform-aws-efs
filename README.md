@@ -66,7 +66,7 @@ module "complete_efs" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.21.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.40.0 |
 
 ## Modules
 
@@ -171,4 +171,4 @@ make cleansupporting
 make cleanstatefiles
 ```
 
-#### BOLDLink-SIG 2023
+#### BOLDLink-SIG 2024

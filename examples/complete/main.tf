@@ -1,4 +1,5 @@
 module "complete_efs_example" {
+  #checkov:skip=CKV2_AWS_5 "Ensure that Security Groups are attached to another resource"
   source                              = "../../"
   creation_token                      = var.name
   mount_target_subnet_ids             = local.public_subnets

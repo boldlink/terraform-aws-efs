@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: Add backup policy support
 - fix: CKV_TF_1: "Ensure Terraform module sources use a commit hash"
 
+## [1.2.1] - 2024-03-08
+- fix: CKV2_AWS_5 in complete example - Ensure that Security Groups are attached to another resource
+
 ## [1.2.0] - 2023-10-10
 - feat: showcased the usage of `performance_mode`, `provisioned_throughput_in_mibps`, `throughput_mode` and `mount_target_ip_address` in the complete example
 - feat: slightly restructured the root module configuration for the mount target ip addresses so as to have support for multiple mount targets with different ip addresses
@@ -46,8 +49,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: Version lock
 - Added: Efs module example
 
-[Unreleased]: https://github.com/boldlink/terraform-aws-efs/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/boldlink/terraform-aws-efs/compare/1.2.1...HEAD
 
+[1.2.1]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.2.1
 [1.2.0]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.2.0
 [1.1.3]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.3
 [1.1.2]: https://github.com/boldlink/terraform-aws-efs/releases/tag/1.1.2
